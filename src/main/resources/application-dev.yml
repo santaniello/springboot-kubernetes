@@ -2,4 +2,5 @@ spring:
   application:
     name: springboot-k8s
 
+test: John
 

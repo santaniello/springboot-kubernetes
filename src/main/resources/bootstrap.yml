@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+        sources:
+          - namespace: default
+            name: springboot-k8s
+      reload:
+        enabled: true
+        mode: event
+        strategy: refresh

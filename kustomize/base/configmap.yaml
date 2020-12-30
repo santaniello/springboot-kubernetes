@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: springboot-k8s
+data:
+  application.yml: |-
+    test: John

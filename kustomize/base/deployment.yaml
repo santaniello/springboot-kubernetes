@@ -21,7 +21,10 @@ spec:
         app: springboot-k8s
     spec:
       containers:
-        - image: springboot-k8s:3.0
+        - envFrom:
+            - configMapRef:
+                name: springboot-k8s
+          image: springboot-k8s:7
           imagePullPolicy: IfNotPresent
           name: springboot-k8s
           resources: {}
