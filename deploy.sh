@@ -3,7 +3,8 @@
 VERSION=$1
 CONTAINER_NAME=springboot-k8s
 
-echo "Atualizando arquivo deployment.yaml ............"
+echo "Update deployment.yaml File............"
+
 sed -i -e "s/\(image: \).*/\1$CONTAINER_NAME:$VERSION/"  ./kustomize/base/deployment.yaml
 
 kubectl delete  deployment $CONTAINER_NAME

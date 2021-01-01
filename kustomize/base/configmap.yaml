@@ -4,4 +4,11 @@ metadata:
   name: springboot-k8s
 data:
   application.yml: |-
-    test: John
+    app:
+      properties:
+        nameUser: Mary
+        roles:
+          - id: 1
+            role: Tester
+          - id: 2
+            role: Admin

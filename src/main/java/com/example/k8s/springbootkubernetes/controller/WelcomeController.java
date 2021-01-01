@@ -1,18 +1,20 @@
 package com.example.k8s.springbootkubernetes.controller;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.example.k8s.springbootkubernetes.configs.WelcomeConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WelcomeController {
 
-	@Value("${test}")
-	private String user;
-	
+	@Autowired
+	private WelcomeConfiguration welcomeConfiguration;
+
 	@RequestMapping("/greeting")
 	public String greeting() {
-		return "Welcome to my youtube channel " + user;
+		String role = welcomeConfiguration.getRoles().stream().findFirst().get().getRole();
+		return "Welcome to my youtube channel " + welcomeConfiguration.getNameUser() + " role: "+ role;
 	}
 
 }

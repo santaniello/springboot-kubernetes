@@ -24,7 +24,7 @@ spec:
         - envFrom:
             - configMapRef:
                 name: springboot-k8s
-          image: springboot-k8s:7
+          image: springboot-k8s:11
           imagePullPolicy: IfNotPresent
           name: springboot-k8s
           resources: {}

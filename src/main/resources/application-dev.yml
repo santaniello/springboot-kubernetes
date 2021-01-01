@@ -2,5 +2,16 @@ spring:
   application:
     name: springboot-k8s
 
-test: John
+
+app:
+  properties:
+    nameUser: Paul
+    roles:
+       - id: 1
+         role: Admin
+       - id: 2
+         role: ReadOnly
+
+
+
 
