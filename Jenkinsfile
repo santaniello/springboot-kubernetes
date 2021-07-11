@@ -10,7 +10,7 @@ pipeline{
        stage('Docker Build'){
            steps{
               script{
-                  dockerapp = docker.build("fsantaniello/springboot-kubernetes:${env.BUILD_ID}", '-f ./Dockerfile')
+                  dockerapp = docker.build("fsantaniello/springboot-kubernetes:${env.BUILD_ID}", '-f ./Dockerfile .')
               }
            }
        }
