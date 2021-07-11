@@ -3,66 +3,32 @@ kind: Deployment
 metadata:
   name: springboot-kubernetes
 spec:
-  progressDeadlineSeconds: 600
-  replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: springboot-kubernetes
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
         app: springboot-kubernetes
     spec:
       containers:
-        - envFrom:
-            - configMapRef:
-                name: springboot-kubernetes
+        - name: springboot-kubernetes
           image: fsantaniello/springboot-kubernetes:{{tag}}
-          imagePullPolicy: IfNotPresent
-          name: springboot-kubernetes
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+          resources: {}
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: springboot-kubernetes
   name: springboot-kubernetes
 spec:
-  clusterIP: 10.96.12.208
-  clusterIPs:
-    - 10.96.12.208
-  externalTrafficPolicy: Cluster
-  ports:
-    - nodePort: 32023
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
   selector:
-    app: springboot-kubernetes
-  sessionAffinity: None
-  type: NodePort
-
----
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: springboot-kubernetes
-data:
-  application.yml: |-
-    app:
-      properties:
-        nameUser: Mary
-        roles:
-          - id: 1
-            role: Tester
-          - id: 2
-            role: Admin
+    app: api
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: LoadBalancer
