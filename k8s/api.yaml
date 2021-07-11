@@ -6,6 +6,7 @@ spec:
   selector:
     matchLabels:
       app: springboot-kubernetes
+      name: springboot-kubernetes
   template:
     metadata:
       labels:
