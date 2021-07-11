@@ -28,7 +28,7 @@ metadata:
   name: springboot-kubernetes
 spec:
   selector:
-    app: api
+    app: springboot-kubernetes
   ports:
     - port: 8080
       targetPort: 8080
