@@ -16,7 +16,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: springboot-kubernetes
     spec:
@@ -24,17 +23,9 @@ spec:
         - envFrom:
             - configMapRef:
                 name: springboot-kubernetes
-          image: fsantaniello/springboot-kubernetes
+          image: fsantaniello/springboot-kubernetes:{{tag}}
           imagePullPolicy: IfNotPresent
           name: springboot-kubernetes
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
 
 ---
 
