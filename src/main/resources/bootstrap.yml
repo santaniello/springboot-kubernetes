@@ -5,7 +5,7 @@ spring:
         enabled: true
         sources:
           - namespace: default
-            name: springboot-k8s
+            name: springboot-kubernetes
       reload:
         enabled: true
         mode: event

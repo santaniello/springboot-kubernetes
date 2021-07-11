@@ -1,6 +1,6 @@
 spring:
   application:
-    name: springboot-k8s
+    name: springboot-kubernetes
 
 
 app:
