@@ -25,11 +25,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app: springboot-kubernetes
   name: springboot-kubernetes
 spec:
   selector:
     app: springboot-kubernetes
   ports:
-    - port: 8080
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
       targetPort: 8080
   type: LoadBalancer
