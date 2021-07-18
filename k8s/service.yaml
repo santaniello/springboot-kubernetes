@@ -1,11 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app: springboot-kubernetes
   name: springboot-kubernetes
 spec:
+  ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8800
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8800
   selector:
     app: springboot-kubernetes
-  ports:
-    - port: 8080
-      targetPort: 8080
+  sessionAffinity: None
   type: LoadBalancer
