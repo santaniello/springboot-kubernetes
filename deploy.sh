@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION=$1
-CONTAINER_NAME=springboot-k8s
+CONTAINER_NAME=springboot-kubernetes
 
 echo "Update deployment.yaml File............"
 

@@ -2,19 +2,19 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: springboot-k8s
-  name: springboot-k8s
+    app: springboot-kubernetes
+  name: springboot-kubernetes
 spec:
   clusterIP: 10.96.12.208
   clusterIPs:
     - 10.96.12.208
   externalTrafficPolicy: Cluster
   ports:
-    - nodePort: 32023
+    - nodePort: 32024
       port: 8080
       protocol: TCP
       targetPort: 8080
   selector:
-    app: springboot-k8s
+    app: springboot-kubernetes
   sessionAffinity: None
   type: NodePort

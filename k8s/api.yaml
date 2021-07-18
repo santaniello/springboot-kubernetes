@@ -3,22 +3,35 @@ kind: Deployment
 metadata:
   name: springboot-kubernetes
 spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: springboot-kubernetes
-      name: springboot-kubernetes
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: springboot-kubernetes
     spec:
       containers:
-        - name: springboot-kubernetes
-          image: fsantaniello/springboot-kubernetes:{{tag}}
-          ports:
-            - containerPort: 8080
-          imagePullPolicy: Always
+        - image: fsantaniello/springboot-kubernetes:{{tag}}
+          imagePullPolicy: IfNotPresent
+          name: springboot-kubernetes
           resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
 
 ---
 
@@ -29,10 +42,10 @@ metadata:
     app: springboot-kubernetes
   name: springboot-kubernetes
 spec:
-#  clusterIP: 10.96.12.208
-#  clusterIPs:
-#    - 10.96.12.208
-#  externalTrafficPolicy: Cluster
+  clusterIP: 10.96.12.208
+  clusterIPs:
+    - 10.96.12.208
+  externalTrafficPolicy: Cluster
   ports:
     - nodePort: 32024
       port: 8080
