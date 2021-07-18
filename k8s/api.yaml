@@ -12,12 +12,15 @@ spec:
         app: springboot-kubernetes
     spec:
       containers:
-        - image: fsantaniello/springboot-kubernetes:{{tag}}
-          imagePullPolicy: IfNotPresent
-          name: springboot-kubernetes
+        - name: springboot-kubernetes
+          image: fsantaniello/springboot-kubernetes:{{tag}}
           ports:
             - containerPort: 8080
+          imagePullPolicy: Always
+          resources: {}
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -26,8 +29,6 @@ spec:
   selector:
     app: springboot-kubernetes
   ports:
-    - nodePort: 32024
-      port: 8080
-      protocol: TCP
+    - port: 8080
       targetPort: 8080
-  type: NodePort
+  type: LoadBalancer
