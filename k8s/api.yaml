@@ -31,10 +31,6 @@ metadata:
     app: springboot-kubernetes
   name: springboot-kubernetes
 spec:
-  clusterIP: 10.96.12.208
-  clusterIPs:
-    - 10.96.12.208
-  externalTrafficPolicy: Cluster
   ports:
     - nodePort: 32024
       port: 8080
