@@ -10,10 +10,6 @@ spec:
       port: 8080
       protocol: TCP
       targetPort: 8800
-    - name: 8080-tcp
-      port: 8080
-      protocol: TCP
-      targetPort: 8800
   selector:
     app: springboot-kubernetes
   sessionAffinity: None
