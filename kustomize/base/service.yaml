@@ -5,16 +5,12 @@ metadata:
     app: springboot-kubernetes
   name: springboot-kubernetes
 spec:
-  clusterIP: 10.96.12.208
-  clusterIPs:
-    - 10.96.12.208
-  externalTrafficPolicy: Cluster
   ports:
-    - nodePort: 32024
+    - name: 8080-tcp
       port: 8080
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8800
   selector:
     app: springboot-kubernetes
   sessionAffinity: None
-  type: NodePort
+  type: LoadBalancer
